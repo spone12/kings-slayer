@@ -1,9 +1,9 @@
 # Name game
 NAME_GAME = 'King Slayer'
 
-# Game sizes
-WINDOW_WIDTH = 600
-WINDOW_HEIGHT = 400
+# Переменные для установки ширины и высоты окна
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
 # FPS count
 FPS = 30
