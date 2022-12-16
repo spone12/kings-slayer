@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
         # Here we calculate how fast the object will be
         # fall to the ground under the influence of gravity
         if self.change_y == 0:
-            self.change_y = 1
+            self.change_y = 2.5
         else:
             self.change_y += .95
 

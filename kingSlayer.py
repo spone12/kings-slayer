@@ -2,67 +2,12 @@ import pygame
 
 from settingsGame import *
 from classes.entities.player import *
-#from classes.levels.level import *
+from classes.levels.level import *
+from classes.objects.platform import *
+#from classes.levels.levelOne import *
 
 # Подключение фото для заднего фона
 bg = pygame.image.load('img//Game//bg.png')
-
-# Platform class
-class Platform(pygame.sprite.Sprite):
-    def __init__(self, width, height):
-        # Platform builder
-        super().__init__()
-        # Installation of a photo platform
-        self.image = pygame.image.load('img//Game//platform.png')
-
-        # Set link to rectangle image
-        self.rect = self.image.get_rect()
-
-
-# Class for arranging platforms on the stage
-class Level(object):
-    def __init__(self, player):
-        # Create a group of sprites
-        self.platform_list = pygame.sprite.Group()
-        # Link to main player
-        self.player = player
-
-    # In order for everything to be drawn, you need to update the screen
-    # When this method is called, the update will occur
-    def update(self):
-        self.platform_list.update()
-
-    # Method for drawing objects on scenesе
-    def draw(self, screen):
-        # Draw the background
-        screen.blit(bg, (0, 0))
-
-        # Draw all platforms from a group of sprites
-        self.platform_list.draw(screen)
-
-
-# A class that describes where the collision objects will be located
-class Level_01(Level):
-    def __init__(self, player):
-        # Calling the parent constructor
-        Level.__init__(self, player)
-
-        # Array with data about platforms. Data in this format:
-        # width, height, x and y position
-        level = [
-            [210, 32, 500, 500],
-            [210, 32, 200, 400],
-            [210, 32, 600, 300],
-        ]
-
-        # Loop through the array and add each platform to the sprite group - platform_list
-        for platform in level:
-            block = Platform(platform[0], platform[1])
-            block.rect.x = platform[2]
-            block.rect.y = platform[3]
-            block.player = self.player
-            self.platform_list.add(block)
-
 
 def main():
     # Initialization
