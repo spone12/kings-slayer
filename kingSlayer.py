@@ -24,7 +24,7 @@ def main():
     pygame.display.set_caption(NAME_GAME)
 
     # Create a player
-    player = Player()
+    player = Player(screen)
 
     # Create all levels
     level_list = []
@@ -47,9 +47,8 @@ def main():
     # Used to control the screen refresh rate
     clock = pygame.time.Clock()
 
-    #
+    # text on screen
     text = PrintText(screen)
-    
 
     # Main program loop
     while not isRunGame:
@@ -91,9 +90,12 @@ def main():
         current_level.draw(screen)
         active_sprite_list.draw(screen)
 
+        # show health
+        player.showHealthCharacter()
+
         # set FPS in game
         clock.tick(FPS)
-        
+       
         # Update the screen after drawing objects
         pygame.display.flip()
 
