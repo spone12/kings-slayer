@@ -1,11 +1,15 @@
 import pygame
+import sys
+pygame.font.init()
 
 from settingsGame import *
 from classes.entities.player import *
 from classes.levels.level import *
 from classes.objects.platform import *
+from classes.printText import *
 #from classes.levels.levelOne import *
 
+screen = ''
 # Подключение фото для заднего фона
 bg = pygame.image.load('img//Game//bg.png')
 
@@ -42,6 +46,10 @@ def main():
 
     # Used to control the screen refresh rate
     clock = pygame.time.Clock()
+
+    #
+    text = PrintText(screen)
+    
 
     # Main program loop
     while not isRunGame:
@@ -85,7 +93,7 @@ def main():
 
         # set FPS in game
         clock.tick(FPS)
-
+        
         # Update the screen after drawing objects
         pygame.display.flip()
 
