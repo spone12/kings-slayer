@@ -1,18 +1,28 @@
 import pygame
 from settingsGame import *
+from classes.printText import *
 
 # A class that describes the behavior of the main player
 class Player(pygame.sprite.Sprite):
     # is the player turned right
     right = True
+    # player health
+    health = 100
 
     # Constructor
-    def __init__(self):
+    def __init__(self, screen):
         # calling parent class constructor
         super().__init__()
 
+        # screen
+        self.screen = screen
+        self.text = PrintText(screen)
+
         # Image of the main character
         self.image = pygame.image.load('img//Characters//mainHero.png')
+
+        self.healthImg = pygame.image.load('img//Game//heart.png')
+        self.healthImg = pygame.transform.scale(self.healthImg, (20, 20))
 
         # Set link to rectangle image
         self.rect = self.image.get_rect()
@@ -109,3 +119,8 @@ class Player(pygame.sprite.Sprite):
     def flip(self):
         # player flip (mirroring)
         self.image = pygame.transform.flip(self.image, True, False)
+
+    # show HP count
+    def showHealthCharacter(self):
+        self.screen.blit(self.healthImg, (20, 20))
+        self.text.print(self.health, 20, 40)
