@@ -4,11 +4,12 @@ from kingSlayer import *
 
 # Class for arranging platforms on the stage
 class Level(object):
-    def __init__(self, player):
+    def __init__(self, player, bg):
         # Create a group of sprites
         self.platform_list = pygame.sprite.Group()
         # Link to main player
         self.player = player
+        self.bg = bg
 
     # In order for everything to be drawn, you need to update the screen
     # When this method is called, the update will occur
@@ -18,7 +19,7 @@ class Level(object):
     # Method for drawing objects on scenesе
     def draw(self, screen):
         # Draw the background
-        screen.blit(bg, (0, 0))
+        screen.blit(self.bg, (0, 0))
 
         # Draw all platforms from a group of sprites
         self.platform_list.draw(screen)
@@ -26,9 +27,9 @@ class Level(object):
 
 # # A class that describes where the collision objects will be located
 class Level_01(Level):
-    def __init__(self, player):
+    def __init__(self, player, bg):
         # Calling the parent constructor
-        Level.__init__(self, player)
+        Level.__init__(self, player, bg)
 
         # Array with data about platforms. Data in this format:
         # width, height, x and y position
