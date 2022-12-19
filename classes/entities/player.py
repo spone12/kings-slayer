@@ -1,13 +1,18 @@
 import pygame
 from settingsGame import *
-from classes.printText import *
 
 # A class that describes the behavior of the main player
 class Player(pygame.sprite.Sprite):
     # is the player turned right
     right = True
     # player health
-    health = 100
+    hp = 100
+    # player mana
+    mana = 100
+    # player level
+    level = 1
+    # experience
+    exp = 0
 
     # Constructor
     def __init__(self, screen):
@@ -16,13 +21,15 @@ class Player(pygame.sprite.Sprite):
 
         # screen
         self.screen = screen
-        self.text = PrintText(screen)
 
         # Image of the main character
         self.image = pygame.image.load('img//Characters//mainHero.png')
 
         self.healthImg = pygame.image.load('img//Game//heart.png')
         self.healthImg = pygame.transform.scale(self.healthImg, (20, 20))
+
+        self.manaImg = pygame.image.load('img//Game//mana.png')
+        self.manaImg = pygame.transform.scale(self.manaImg, (20, 20))
 
         # Set link to rectangle image
         self.rect = self.image.get_rect()
@@ -120,7 +127,27 @@ class Player(pygame.sprite.Sprite):
         # player flip (mirroring)
         self.image = pygame.transform.flip(self.image, True, False)
 
-    # show HP count
-    def showHealthCharacter(self):
+    # show character bars
+    def showCharacterBars(self, textObj):
         self.screen.blit(self.healthImg, (20, 20))
-        self.text.print(self.health, 20, 40)
+        self.screen.blit(self.manaImg, (50, 20))
+        textObj.print(self.hp, 20, 40)
+        textObj.print(self.mana, 50, 40)
+
+    def statPlus(self, stat, value):
+        
+        match stat:
+
+            case 'hp':
+                self.hp += value
+            case 'mana':
+                self.mana += value
+
+    def statMinus(self, stat, value):
+        
+        match stat:
+
+            case 'hp':
+                self.hp -= value
+            case 'mana':
+                self.mana -= value

@@ -48,8 +48,9 @@ def main():
     clock = pygame.time.Clock()
 
     # text on screen
-    text = PrintText(screen)
+    textObj = PrintText(screen)
 
+    
     # Main program loop
     while not isRunGame:
         # Activity Tracking
@@ -91,7 +92,7 @@ def main():
         active_sprite_list.draw(screen)
 
         # show health
-        player.showHealthCharacter()
+        player.showCharacterBars(textObj)
 
         # set FPS in game
         clock.tick(FPS)
