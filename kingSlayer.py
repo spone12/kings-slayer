@@ -29,15 +29,27 @@ class kingSlayer:
         self.player.rect.x = 340
         self.player.rect.y = SCREEN_HEIGHT - self.player.rect.height
 
-    def update(self, isDebugFps):
+    def update(self, isDebugFps = False):
         # Update the player
         self.active_sprite_list.update()
 
         # Update objects in the scene
-        self.current_level.update()
+        #self.current_level.update()
+        
+        # Preventing the player from moving beyond the right side of the screen
+        if self.player.rect.right > SCREEN_WIDTH:
+            self.player.rect.right = SCREEN_WIDTH
+
+        # Preventing the player from moving beyond the left side of the screen
+        if self.player.rect.left < 0:
+            self.player.rect.left = 0
+
+        # set FPS on game
+        self.clock.tick(FPS)
+
         # Update the screen after drawing objects
         pg.display.flip()
-        self.clock.tick(FPS)
+
         if isDebugFps:
             pg.display.set_caption(f'{self.clock.get_fps() :.1f}')
 
@@ -86,7 +98,7 @@ class kingSlayer:
     def run(self):
         while True:
             self.checkEvents()
-            self.update(False)
+            self.update(True)
             self.draw()
 
 if __name__ == '__main__':

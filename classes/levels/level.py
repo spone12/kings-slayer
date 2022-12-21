@@ -1,5 +1,6 @@
 import pygame
 from kingSlayer import *
+from settingsGame import *
 #from classes.levels.levelOne import *
 
 # Class for arranging platforms on the stage
@@ -34,12 +35,14 @@ class Level_01(Level):
         # Array with data about platforms. Data in this format:
         # width, height, x and y position
         level = [
-            [210, 72, 600, 500],
-            [210, 72, 50,  500],
-            [210, 72, 50,  300],
-            [210, 72, 200, 400],
-            [210, 72, 600, 300],
-            [210, 72, 400, 400],
+
+            [SCREEN_WIDTH, 20, 0, SCREEN_HEIGHT - 5],
+            [100, 20, 600, 500],
+            [100, 20, 50,  500],
+            [100, 20, 50,  300],
+            [100, 20, 200, 400],
+            [100, 20, 600, 300],
+            [100, 20, 400, 400],
         ]
 
         # Loop through the array and add each platform to the sprite group - platform_list
