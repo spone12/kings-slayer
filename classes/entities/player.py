@@ -3,6 +3,7 @@ from settingsGame import *
 
 # A class that describes the behavior of the main player
 class Player(pygame.sprite.Sprite):
+    
     # is the player turned right
     right = True
     # player health
@@ -89,22 +90,22 @@ class Player(pygame.sprite.Sprite):
             self.rect.y = SCREEN_HEIGHT - self.rect.height
 
     # Jump handling
-    def jump(self):
+    def jump(self, offset = 10):
         # We need to check here if we are in contact with anything
         # or in other words, are we in flight.
         # To do this, we go down by 10 units, check the contact and then go back up
-        self.rect.y += 10
+        self.rect.y += offset
         platform_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
-        self.rect.y -= 10
+        self.rect.y -= offset
 
         # If everything is in order, jump up
         if len(platform_hit_list) > 0 or self.rect.bottom >= SCREEN_HEIGHT:
             self.change_y = -16
 
     # Player movement in left
-    def go_left(self):
+    def go_left(self, offset = -9):
         # The functions themselves will be called later from the main loop
-        self.change_x = -9 # Move player on X coordinate
+        self.change_x = offset # Move player on X coordinate
 
         # We check where he is looking and if anything, then turn him over
         if(self.right):
@@ -112,8 +113,8 @@ class Player(pygame.sprite.Sprite):
             self.right = False
 
     # Player movement in right
-    def go_right(self):
-        self.change_x = 9
+    def go_right(self, offset = 9):
+        self.change_x = offset
         if (not self.right):
             self.flip()
             self.right = True
